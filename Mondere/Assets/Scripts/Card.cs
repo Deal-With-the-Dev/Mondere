@@ -12,7 +12,6 @@ namespace Assets.Scripts
     public class Card : MonoBehaviour
     {
         public CardData Data;
-        public Vector2 Pos;
         public bool Selectable = false;
 
         [SerializeField]
@@ -27,6 +26,27 @@ namespace Assets.Scripts
         private void Start()
         {
             background = GetComponent<Image>();
+            indicators = new Image[4, 3];
+            GetIndicators();
+        }
+
+        private void GetIndicators()
+        {
+            //TODO: this is terrible
+            // top right bottom left
+            // left mid right
+            indicators[0, 0] = this.transform.GetChild(0).GetComponent<Image>();
+            indicators[0, 1] = this.transform.GetChild(1).GetComponent<Image>();
+            indicators[0, 2] = this.transform.GetChild(2).GetComponent<Image>();
+            indicators[1, 0] = this.transform.GetChild(3).GetComponent<Image>();
+            indicators[1, 1] = this.transform.GetChild(4).GetComponent<Image>();
+            indicators[1, 2] = this.transform.GetChild(5).GetComponent<Image>();
+            indicators[3, 2] = this.transform.GetChild(6).GetComponent<Image>();
+            indicators[3, 1] = this.transform.GetChild(7).GetComponent<Image>();
+            indicators[3, 0] = this.transform.GetChild(8).GetComponent<Image>();
+            indicators[2, 2] = this.transform.GetChild(9).GetComponent<Image>();
+            indicators[2, 1] = this.transform.GetChild(10).GetComponent<Image>();
+            indicators[2, 0] = this.transform.GetChild(11).GetComponent<Image>();
         }
 
         public void GoMini()
@@ -55,6 +75,7 @@ namespace Assets.Scripts
             this.Data = data;
             this.description.text = data.Description;
             this.title.text = data.name;
+            background.color = Color.black;
             SetIndicators(Side.Top, data.Top);
             SetIndicators(Side.Right, data.Right);
             SetIndicators(Side.Bottom, data.Bottom);
