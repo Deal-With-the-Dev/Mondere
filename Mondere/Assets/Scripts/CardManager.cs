@@ -11,6 +11,8 @@ namespace Assets.Scripts
         public int Width = 5;
         public GameObject PrefabCard;
         public CardData[] Deck;
+        public bool PlayerTurn = true;
+        public bool EmptyField = true;
 
         [SerializeField]
         private RectTransform hand;
@@ -42,9 +44,9 @@ namespace Assets.Scripts
             }
         }
 
-        // Update is called once per frame
         void Update()
         {
+
 
         }
     }
