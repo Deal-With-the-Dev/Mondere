@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -24,8 +25,35 @@ namespace Assets.Scripts
         {
             ClearField();
 
-            GetCardAt(0, 0).RenderData(Deck[0]);
-            GetCardAt(1, 1).RenderData(Deck[1]);
+            AddCardToHand(Deck[0]);
+            AddCardToHand(Deck[0]);
+        }
+
+        public void AddCardToHand(CardData d)
+        {
+            var go = Instantiate(PrefabCard, hand);
+            var card = go.GetComponent<Card>();
+            card.RenderData(d);
+            var button = go.GetComponent<Button>();
+            button.onClick.AddListener(() => ClickedOn(card)); 
+        }
+
+        public void ClickedOn(Card card)
+        {
+            Debug.Log("Clicked on " + card);
+
+            if(EmptyField)
+            {
+                var middle = GetCardAt(Height / 2, Width / 2);
+                middle.RenderData(card.Data);
+                EmptyField = false;
+                Destroy(card.gameObject);
+            }
+            else
+            {
+                //need to render possible moves
+            }
+
         }
 
         public Card GetCardAt(int row, int col)

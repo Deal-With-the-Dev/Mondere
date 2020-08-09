@@ -23,7 +23,7 @@ namespace Assets.Scripts
         [SerializeField]
         private Text description;
 
-        private void Start()
+        private void Awake()
         {
             background = GetComponent<Image>();
             indicators = new Image[4, 3];
