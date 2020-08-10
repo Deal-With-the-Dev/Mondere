@@ -52,8 +52,17 @@ namespace Assets.Scripts
             else
             {
                 //need to render possible moves
+                ShowValidMoves(card);
             }
 
+        }
+
+        private void ShowValidMoves(Card card)
+        {
+            for (int i = 0; i < field.childCount; i++)
+            {
+
+            }
         }
 
         public Card GetCardAt(int row, int col)
